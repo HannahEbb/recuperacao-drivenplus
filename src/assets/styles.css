@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+    box-sizing: border-box;
+    --cor-fundo-tela: #000000;
+    --cor-rosa-driven: #FF4791;
+    --cor-branco: #FFFFFF;
+    --cor-amarelo:  #FFF16F; 
+    --cor-verde: #56D49F;
+    --cor-vermelho: #FF4747;
+    --cor-cinza-claro: #CECECE;
+    --cor-cinza-escuro: #7E7E7E;
+  }
+  
+  body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--cor-fundo-tela);
+    color: var(--cor-branco);
+  }
+  
+  body::-webkit-scrollbar {
+    display: none;
+  }
