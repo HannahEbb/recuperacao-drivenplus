@@ -4,11 +4,10 @@ import styled from 'styled-components';
 
 export default function Plano ({id, imagem, preco}) {
 
-    const ID_PLANO = id;
 
     return(
     <>
-        <Link  to={`/subscriptons/:${ID_PLANO}`}>
+        <Link to={`/subscriptions/${id}`}>
             <Planos>
                 <div><img src={imagem} width="140px" height="95px"/></div>
                 <h3>R${preco}</h3>
