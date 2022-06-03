@@ -12,32 +12,33 @@ export default function TelaLogin () {
 
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-    //const { setToken } = useContext(UserContext);
+    const { setToken } = useContext(UserContext);
 
-    // const navigate = useNavigate();
+     const navigate = useNavigate();
 
-    // function fazerLogin (event) {
-    //     event.preventDefault(); 
+     function fazerLogin (event) {
+         event.preventDefault(); 
 
-    //     const login = {
-    //         email: email,
-    //         password: senha
-    //     }
+         const login = {
+             email: email,
+             password: senha
+         }
         
-    //     const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', login);
-    //     promise.then(res => {
-    //         setToken(res.data.token);
-    //         console.log(res.data.token);
-    //         navigate('/hoje')}); 
-    //         promise.catch(err => {
-    //             console.log(err);
-    //             alert("Dados incorretos! Preencha os campos novamente.")});
+         const promise = axios.post('https://mock-api.driven.com.br/api/v4/driven-plus/auth/login', login);
+         promise.then(res => {
+             setToken(res.data.token);
+             console.log(res.data.token);
+             {res.data.membership ? navigate('/home') : navigate('/subscriptions') }}); 
+             promise.catch(err => {
+                 console.log(err);
+                 alert("Dados incorretos! Preencha os campos novamente ou cadastre-se primeiro.")});
+        }
 
 
     return (
         <Container>
             <img src={logo} width="320px" height="62px"/>
-            <form /*onSubmit={fazerLogin}*/>
+            <form onSubmit={fazerLogin}>
                 <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="  E-mail"></input>
                 <input type="password" value={senha} onChange={e => setSenha(e.target.value)} placeholder="  Senha"></input>
                 <button type="submit">ENTRAR</button>

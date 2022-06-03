@@ -1,11 +1,8 @@
 import React from 'react';
-import { useContext } from "react";
-import UserContext from "../../UserContext";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from 'styled-components';
-import logo from "../../assets/logo_inicial.png";
 
 export default function TelaCadastro () {
 
@@ -14,33 +11,32 @@ export default function TelaCadastro () {
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
 
-    // function fazerCadastro (event) {
-    //     event.preventDefault();
+     function fazerCadastro (event) {
+         event.preventDefault();
         
-    //     const signup = {
-    //         email: email,
-    //         name: nome,
-    //         image: foto,
-    //         password: senha
-    //     }
+         const signup = {
+             email: email,
+             name: nome,
+             cpf: cpf,
+             password: senha
+         }
         
-    //     const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up', signup);
-    //     promise.then(res => {
-    //         console.log(res.data);
-    //         navigate('/')}); 
-    //     promise.catch(err => {
-    //         console.log(err);
-    //         alert("Preencha os dados corretamente, por favor.");
-    //     });
-
-    //}
+         const promise = axios.post('https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up', signup);
+         promise.then(res => {
+             console.log(res.data);
+             navigate('/')}); 
+         promise.catch(err => {
+             console.log(err);
+             alert("Preencha os dados corretamente, por favor.");
+         });
+        }
 
     return (
         <Container>
-        <form /*onSubmit={fazerLogin}*/>
+        <form onSubmit={fazerCadastro}>
         <input type="text" value={nome} onChange={e => setNome(e.target.value)} placeholder="  Nome"></input>
             <input type="text" value={cpf} onChange={e => setCpf(e.target.value)} placeholder="  CPF"></input>
             <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="  E-mail"></input>
