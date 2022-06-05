@@ -11,7 +11,8 @@ import TelaHome from "./components/5.TelaHome/TelaHome";
 export default function App() {
 
     const [token, setToken] = useState("");
-    const contextValue = { token, setToken };
+    const [mid, setMid] = useState("");
+    const contextValue = { token, setToken, mid, setMid };
 
 
     return (

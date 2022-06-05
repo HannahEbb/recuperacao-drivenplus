@@ -37,10 +37,10 @@ export default function TelaCadastro () {
     return (
         <Container>
         <form onSubmit={fazerCadastro}>
-        <input type="text" value={nome} onChange={e => setNome(e.target.value)} placeholder="  Nome"></input>
-            <input type="text" value={cpf} onChange={e => setCpf(e.target.value)} placeholder="  CPF"></input>
-            <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="  E-mail"></input>
-            <input type="password" value={senha} onChange={e => setSenha(e.target.value)} placeholder="  Senha"></input>
+        <input type="text" value={nome} onChange={e => setNome(e.target.value)} placeholder="Nome"></input>
+            <input type="text" value={cpf} onChange={e => setCpf(e.target.value)} placeholder="CPF"></input>
+            <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="E-mail"></input>
+            <input type="password" value={senha} onChange={e => setSenha(e.target.value)} placeholder="Senha"></input>
             <button type="submit">CADASTRAR</button>
         </form>
         <div>
@@ -74,6 +74,7 @@ const Container = styled.div`
         margin-bottom: 16px;
         font-size: 14px;
         color: var(--cor-cinza-escuro);
+        padding-left: 14px;
         ::placeholder {
             font-size: 14px;
             font-weight: 400;

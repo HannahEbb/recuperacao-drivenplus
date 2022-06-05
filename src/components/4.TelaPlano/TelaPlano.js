@@ -2,12 +2,15 @@ import React from 'react';
 import { useContext } from "react";
 import UserContext from "../../UserContext";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import styled from 'styled-components';
 import voltar from "../../assets/vector.png";
+import checklist from "../../assets/clipboard.png";
+import dinheiro from "../../assets/money.png";
 import drivenPlus from "../../assets/drivenPlus.png";
 import Info from './Info';
+import Pagamento from './Pagamento';
 
 
 export default function TelaPlano () {
@@ -43,22 +46,26 @@ export default function TelaPlano () {
     return (
         <>
         <Top>
-        <img src={voltar} width="28px" height="27.3px"/>
+            <Link to="/subscriptions">
+            <img src={voltar} width="28px" height="27.3px"/>
+            </Link>
         </Top>
-        <Container>
+        <Logo>
             <img src={plano.image} />
             <div><img src={drivenPlus} width="170px" height="28px"/></div>
-            <Infos>
-            <h2>Benefícios:</h2>
+        </Logo>
+        <Beneficios>
+            <div><img src={checklist}/><h2>Benefícios:</h2></div>
             {infos.map(i => {return <Info key={i.id} id={i.id} 
-                                            mid={i.membershipId}
+                                            membershipId={i.membershipId}
                                             texto={i.title}
                                             link={i.link}/>})}
-            </Infos>
-            <h2>Preço:</h2>
+        </Beneficios>
+        <Precos>
+            <div><img src={dinheiro}/><h2>Preço:</h2></div>
             <h3>R${plano.price} cobrados mensalmente</h3>
-        
-        </Container>
+        </Precos>
+        <Pagamento/>
         </>
     );
 }
@@ -70,14 +77,14 @@ const Top = styled.div`
     padding-left: 22px;
 
 `
-const Container = styled.div`
+const Logo = styled.div`
 
     width: 100%;
     height: 100%;
     padding-top: 12px;
     padding-left: 38px;
     padding-right: 38px;
-    padding-bottom: 12px;
+    padding-bottom: 24px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -90,7 +97,39 @@ const Container = styled.div`
 
 `
 
-const Infos = styled.div`
+const Beneficios = styled.div`
     color: white;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    padding-left: 44px;
+    margin-bottom: 12px;
+
+    div {
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    img {
+        margin-right: 5px;
+    }
+
+`
+
+const Precos = styled.div`
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    padding-left: 44px;
+
+    div {
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    img {
+        margin-right: 5px;
+    }
 
 `

@@ -39,8 +39,8 @@ export default function TelaLogin () {
         <Container>
             <img src={logo} width="320px" height="62px"/>
             <form onSubmit={fazerLogin}>
-                <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="  E-mail"></input>
-                <input type="password" value={senha} onChange={e => setSenha(e.target.value)} placeholder="  Senha"></input>
+                <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="E-mail"></input>
+                <input type="password" value={senha} onChange={e => setSenha(e.target.value)} placeholder="Senha"></input>
                 <button type="submit">ENTRAR</button>
             </form>
             <div>
@@ -79,6 +79,7 @@ const Container = styled.div`
         margin-bottom: 16px;
         font-size: 14px;
         color: var(--cor-cinza-escuro);
+        padding-left: 14px;
         ::placeholder {
             font-size: 14px;
             font-weight: 400;
