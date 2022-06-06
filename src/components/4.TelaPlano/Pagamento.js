@@ -2,32 +2,30 @@ import React from 'react';
 import { useContext } from "react";
 import UserContext from "../../UserContext";
 import { useState } from 'react';
-import axios from "axios";
 import styled from 'styled-components';
 
 export default function Pagamento () {
 
-    const { token, mid } = useContext(UserContext);
-    const [nomeCartao, setNomeCartao] = useState("");
-    const [numeroCartao, setNumeroCartao] = useState("");
-    const [codigoSeguranca, setCodigoSeguranca] = useState("");
-    const [validade, setValidade] = useState("");
+    const { token, mid, setIsOpen, nomeCartao, setNomeCartao, 
+            numeroCartao, setNumeroCartao, codigoSeguranca, setCodigoSeguranca,
+            validade, setValidade } = useContext(UserContext);
 
-    function assinarPlano() {
-        //post
-    }
-
+   function abrirModal(event) {
+    event.preventDefault(); 
+    setIsOpen(true);
+   }
+    
     return(
         <Container>
-        <form onSubmit={assinarPlano}>
+            <form onSubmit={abrirModal}>
             <input type="text" value={nomeCartao} onChange={e => setNomeCartao(e.target.value)} placeholder="Nome impresso no cartão"></input>
-            <input type="number" value={numeroCartao} onChange={e => setNumeroCartao(e.target.value)} placeholder="Dígitos do cartão"></input>
+            <input type="text" value={numeroCartao} onChange={e => setNumeroCartao(e.target.value)} placeholder="Dígitos do cartão"></input>
             <div>
                 <input type="number" value={codigoSeguranca} onChange={e => setCodigoSeguranca(e.target.value)} placeholder="Código de segurança"></input>
-                <input type="number" value={validade} onChange={e => setValidade(e.target.value)} placeholder="Validade"></input>
+                <input type="text" value={validade} onChange={e => setValidade(e.target.value)} placeholder="Validade"></input>
             </div>
             <button type="submit">ASSINAR</button>
-        </form>
+            </form>
         </Container>
     );
 }
@@ -48,11 +46,6 @@ const Container = styled.div`
     div {
         display: flex;
         justify-content: space-between;
-    }
-
-    img {
-        margin-top: 122px;
-        margin-bottom: 100px;
     }
 
     input {
@@ -83,10 +76,5 @@ const Container = styled.div`
         border-radius: 8px;
         margin-bottom: 24px;
     }
-
-    h2 {
-        color: var(--cor-branco);
-    }
-    
 
 `

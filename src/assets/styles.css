@@ -23,3 +23,14 @@
   body::-webkit-scrollbar {
     display: none;
   }
+
+
+  .Modal {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      right: 40px;
+      bottom: 40px;
+      background-color: purple;
+  }
+  

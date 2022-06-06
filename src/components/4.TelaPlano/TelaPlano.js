@@ -12,10 +12,9 @@ import drivenPlus from "../../assets/drivenPlus.png";
 import Info from './Info';
 import Pagamento from './Pagamento';
 
-
 export default function TelaPlano () {
 
-    const { token } = useContext(UserContext);
+    const { token, setMid, setPreco } = useContext(UserContext);
     const { ID_PLANO } = useParams();
     const [plano, setPlano] = useState({});
     const [infos, setInfos] = useState([]);
@@ -36,7 +35,9 @@ export default function TelaPlano () {
             const array = response.data.perks;
             if(dados.length !==0) {
                 setPlano({...dados});
-                setInfos([...array]) 
+                setInfos([...array]);
+                setMid(array[0].membershipId);
+                setPreco(dados.price);
             }
         })
 
