@@ -14,27 +14,28 @@ export default function TelaHome () {
     //atualiza os valores de plano e infos fazendo uma nova requisição get com o ID_PLANO
 
     return (
-        <Container>
-            <Topo>
+        <>
+        <Topo>
             <img src={assinante.membership.image} width="60px" height="60px"/>
             <img src={perfil} width="34px" height="33px"/>
-            </Topo>
+        </Topo>
+        <Container>
             <h2>Olá, {assinante.name}</h2>
             <Beneficios>
                 {assinante.membership.perks.map(i => {return <button key={i.id}>{i.title}</button>})}
             </Beneficios>
             <Botoes>
                 <button onClick={() => {console.log(assinante)}}>Mudar plano</button>
-                <button>Cancelar plano</button>
+                <button style={{background: '#FF4747'}}>Cancelar plano</button>
             </Botoes>
-        
         </Container>
+        
+        
+        </>
     );
 }
 
 const Container = styled.div`
-
-background: purple;
 
     width: 100%;
     height: 100%;
@@ -59,7 +60,10 @@ const Topo = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    padding-top: 28px;
+    padding-left: 38px;
+    padding-right: 22px;
+    margin-bottom: 20px;
 `
 
 const Beneficios = styled.div`
@@ -80,6 +84,9 @@ const Beneficios = styled.div`
 
 const Botoes = styled.div`
 
+    width: 100%; 
+    padding-left: 38px;
+    padding-right: 38px;  
     position: fixed;
     bottom: 0px;
     margin-bottom: 4px;
