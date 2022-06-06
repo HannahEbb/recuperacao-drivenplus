@@ -10,9 +10,6 @@ import TelaHome from "./components/5.TelaHome/TelaHome";
 import Modal from "./components/4.TelaPlano/Modal";
 
 
-//Modal.setAppElement('.root')
-
-
 export default function App() {
 
     const [token, setToken] = useState("");
