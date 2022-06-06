@@ -12,7 +12,7 @@ export default function TelaLogin () {
 
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-    const { setToken } = useContext(UserContext);
+    const { setToken, setAssinante } = useContext(UserContext);
 
      const navigate = useNavigate();
 
@@ -27,7 +27,8 @@ export default function TelaLogin () {
          const promise = axios.post('https://mock-api.driven.com.br/api/v4/driven-plus/auth/login', login);
          promise.then(res => {
              setToken(res.data.token);
-             console.log(res.data.token);
+             setAssinante(res.data);
+             console.log(res.data);
              {res.data.membership ? navigate('/home') : navigate('/subscriptions') }}); 
              promise.catch(err => {
                  console.log(err);

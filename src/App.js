@@ -22,6 +22,7 @@ export default function App() {
     const [codigoSeguranca, setCodigoSeguranca] = useState("");
     const [validade, setValidade] = useState("");
     const [ preco, setPreco ] = useState("");
+    const [ assinante, setAssinante] = useState({});
 
     const [modalIsOpen, setIsOpen] = useState(false);
     
@@ -33,6 +34,7 @@ export default function App() {
                             numeroCartao, setNumeroCartao,
                             codigoSeguranca, setCodigoSeguranca,
                             validade, setValidade,
+                            assinante, setAssinante,
                             modalIsOpen, setIsOpen };
 
     return (
