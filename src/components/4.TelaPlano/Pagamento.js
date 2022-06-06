@@ -1,12 +1,11 @@
 import React from 'react';
 import { useContext } from "react";
 import UserContext from "../../UserContext";
-import { useState } from 'react';
 import styled from 'styled-components';
 
 export default function Pagamento () {
 
-    const { token, mid, setIsOpen, nomeCartao, setNomeCartao, 
+    const { setIsOpen, nomeCartao, setNomeCartao, 
             numeroCartao, setNumeroCartao, codigoSeguranca, setCodigoSeguranca,
             validade, setValidade } = useContext(UserContext);
 

@@ -4,10 +4,9 @@ import styled from 'styled-components';
 
 export default function Plano ({id, imagem, preco}) {
 
-
     return(
     <>
-        <Link to={`/subscriptions/${id}`}>
+        <Link style={{textDecoration: 'none'}} to={`/subscriptions/${id}`}>
             <Planos>
                 <div><img src={imagem} width="140px" height="95px"/></div>
                 <h3>R${preco}</h3>

@@ -1,17 +1,57 @@
 import React from 'react';
 import { useContext } from "react";
 import UserContext from "../../UserContext";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from 'styled-components';
 import perfil from "../../assets/perfil.png";
 
 
 export default function TelaHome () {
-    const { token, assinante } = useContext(UserContext);
+    const { token, assinante, setAssinante, nomeCartao, numeroCartao, codigoSeguranca, validade, mid } = useContext(UserContext);
 
-    //atualiza os valores de plano e infos fazendo uma nova requisição get com o ID_PLANO
+    const navigate = useNavigate();
+
+    function mudarPlano () {
+
+        const pagamento = {
+            membershipId: mid,
+            cardName: nomeCartao,
+            cardNumber: numeroCartao,
+            securityNumber: codigoSeguranca,
+            expirationDate: validade
+        }
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+      
+        const promise = axios.post('https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions', pagamento, config);
+        promise.then(res => {
+            setAssinante(res.data); 
+            navigate('/subscriptions')}); 
+            promise.catch(err => {
+                console.log(err);
+                alert("Problema ao solicitar alteração. Tente novamente mais tarde, por favor.")});
+    }
+
+    function cancelarPlano () {
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+      
+        axios.delete('https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions', config)
+        .then(res => {
+        console.log(res); 
+        navigate('/subscriptions')}); 
+           
+    }
+
 
     return (
         <>
@@ -20,17 +60,15 @@ export default function TelaHome () {
             <img src={perfil} width="34px" height="33px"/>
         </Topo>
         <Container>
-            <h2>Olá, {assinante.name}</h2>
+            <h2>Olá, {assinante.name ? assinante.name : nomeCartao}</h2>
             <Beneficios>
-                {assinante.membership.perks.map(i => {return <button key={i.id}>{i.title}</button>})}
+                {assinante.membership.perks.map(i => {return <button onClick={() => window.location.replace(i.link)} key={i.id}>{i.title}</button>})}
             </Beneficios>
             <Botoes>
-                <button onClick={() => {console.log(assinante)}}>Mudar plano</button>
-                <button style={{background: '#FF4747'}}>Cancelar plano</button>
+                <button onClick={mudarPlano}>Mudar plano</button>
+                <button onClick={cancelarPlano} style={{background: '#FF4747'}}>Cancelar plano</button>
             </Botoes>
         </Container>
-        
-        
         </>
     );
 }

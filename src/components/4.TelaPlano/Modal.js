@@ -1,7 +1,6 @@
 import React from 'react';
 import { useContext } from "react";
 import UserContext from "../../UserContext";
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from 'styled-components';
@@ -11,7 +10,7 @@ import xModal from "../../assets/xModal.png";
 export default function Modal() {
 
     const { token, mid, preco, setIsOpen,   
-        nomeCartao, numeroCartao, codigoSeguranca, validade } = useContext(UserContext);
+        nomeCartao, numeroCartao, codigoSeguranca, validade, setAssinante } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -32,8 +31,9 @@ export default function Modal() {
          }
        
          const promise = axios.post('https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions', pagamento, config);
-         promise.then(() => {
+         promise.then(res => {
              setIsOpen(false);
+             setAssinante(res.data); 
              navigate('/home')}); 
              promise.catch(err => {
                  setIsOpen(false);

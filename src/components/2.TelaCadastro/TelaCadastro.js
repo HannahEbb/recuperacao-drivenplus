@@ -25,13 +25,13 @@ export default function TelaCadastro () {
          }
         
          const promise = axios.post('https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up', signup);
-         promise.then(res => {
-             console.log(res.data);
-             navigate('/')}); 
-         promise.catch(err => {
-             console.log(err);
-             alert("Preencha os dados corretamente, por favor.");
-         });
+            promise.then(res => {
+                console.log(res.data);
+                navigate('/')}); 
+            promise.catch(err => {
+                console.log(err);
+                alert("Preencha os dados corretamente, por favor.");
+            });
         }
 
     return (
